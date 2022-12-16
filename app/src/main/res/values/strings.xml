@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SampleAppWithMvvm</string>
+
+    <string name="news_list">News list</string>
+    <string name="news_title">New Title</string>
+    <string name="news_section_name">News Section Name</string>
+    <string name="news_pillar_name">News Pillar Name</string>
+    <string name="loading_news">Loading News …</string>
+
+
+<!--    Transitions-->
+    <string name="transition_news_details_title">transition_news_details_title</string>
+</resources>
