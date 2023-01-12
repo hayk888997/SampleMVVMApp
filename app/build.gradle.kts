@@ -59,6 +59,8 @@ dependencies {
     val retrofitVersion = "2.9.0"
     val okhttpLoggingVersion = "4.9.0"
 
+    val mockkVersion = "1.13.3"
+
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.fragment:fragment-ktx:1.5.5")
 
@@ -98,5 +100,10 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation("io.insert-koin:koin-test-junit5:3.3.2")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.10.0")
+    testImplementation ("io.mockk:mockk-android:${mockkVersion}")
+    testImplementation ("io.mockk:mockk-agent:${mockkVersion}")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
 
 }
