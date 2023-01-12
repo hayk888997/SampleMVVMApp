@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.sampleappwithmvvm.viewmodel.NewsSharedViewModel
-import com.example.utils.viewDataBinding
+import com.example.utils.viewBinding
 import com.sample.appwithmvvm.R
 import com.sample.appwithmvvm.databinding.FragmentNewsDetailsBinding
 import kotlinx.coroutines.CoroutineScope
@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 class NewsDetailsFragment : Fragment(R.layout.fragment_news_details) {
 
     private val viewModel by sharedViewModel<NewsSharedViewModel>()
-    private val binding by viewDataBinding(FragmentNewsDetailsBinding::bind)
+    private val binding by viewBinding(FragmentNewsDetailsBinding::bind)
 
     override fun onCreateView(
         inflater: LayoutInflater,

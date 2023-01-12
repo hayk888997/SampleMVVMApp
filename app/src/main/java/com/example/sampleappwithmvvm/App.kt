@@ -2,6 +2,7 @@ package com.example.sampleappwithmvvm
 
 import android.app.Application
 import com.example.sampleappwithmvvm.di.koinModule
+import com.sample.appwithmvvm.BuildConfig
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -11,8 +12,7 @@ class App : Application() {
 
     override fun onCreate() {
         startKoin {
-            // TODO: Change logger based on build
-            androidLogger(Level.DEBUG)
+            if (BuildConfig.DEBUG) androidLogger(Level.DEBUG)
             androidContext(this@App)
             modules(
                 listOf(

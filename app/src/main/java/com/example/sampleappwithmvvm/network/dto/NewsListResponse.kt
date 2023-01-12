@@ -6,5 +6,5 @@ import com.google.gson.annotations.SerializedName
 class NewsListResponse {
     @SerializedName("results")
     @Expose
-    var newsList: List<NewsResponse>? = null
+    var newsList: List<NewsItemResponse>? = null
 }

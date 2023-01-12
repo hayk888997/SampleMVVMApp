@@ -1,9 +1,10 @@
 package com.example.sampleappwithmvvm.di
 
+import com.example.sampleappwithmvvm.network.AuthInterceptor
 import com.example.sampleappwithmvvm.viewmodel.NewsSharedViewModel
 import com.example.sampleappwithmvvm.network.ServiceGenerator
 import com.example.sampleappwithmvvm.network.api.NewsApi
-import com.example.sampleappwithmvvm.network.repo.NewsRepository
+import com.example.sampleappwithmvvm.network.repo.NewsRemoteRepository
 import com.sample.appwithmvvm.BuildConfig
 import okhttp3.Cache
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,11 +19,11 @@ val koinModule = module {
     //viewModels
     viewModel { NewsSharedViewModel(get()) }
 
-
     //Repositories
-    single { NewsRepository(get()) }
+    single { NewsRemoteRepository(get()) }
 
-
+    //Networking
+    single { AuthInterceptor() }
     single { GsonConverterFactory.create() }
     single {
         ServiceGenerator.createNonAuthorised<NewsApi>()

@@ -12,12 +12,9 @@ import java.util.concurrent.TimeUnit
 class ServiceGenerator {
 
     companion object : KoinComponent {
-
-        const val BASE_URL = "https://content.guardianapis.com"
-        const val REQUEST_TIMEOUT = 10000L
-
         val cache: Cache by inject()
         val loggingInterceptor: HttpLoggingInterceptor by inject()
+        val authInterceptor: AuthInterceptor by inject()
         val gson: GsonConverterFactory by inject()
 
         inline fun <reified T> createNonAuthorised(): T {
@@ -27,8 +24,8 @@ class ServiceGenerator {
                 .cache(cache)
                 .connectTimeout(REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
                 .callTimeout(REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
-                .addNetworkInterceptor(loggingInterceptor)
-                .build()
+                .addInterceptor(authInterceptor)
+                .addInterceptor(loggingInterceptor).build()
 
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -40,3 +37,4 @@ class ServiceGenerator {
         }
     }
 }
+

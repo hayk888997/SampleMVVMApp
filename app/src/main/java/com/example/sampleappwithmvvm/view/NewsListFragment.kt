@@ -12,10 +12,10 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
-import com.example.sampleappwithmvvm.adapters.NewsAdapter
+import com.example.sampleappwithmvvm.view.adapters.NewsAdapter
 import com.example.sampleappwithmvvm.viewmodel.NewsSharedViewModel
-import com.example.sampleappwithmvvm.network.dto.NewsResponse
-import com.example.utils.viewDataBinding
+import com.example.sampleappwithmvvm.network.dto.NewsItemResponse
+import com.example.utils.viewBinding
 import com.sample.appwithmvvm.R
 import com.sample.appwithmvvm.databinding.FragmentNewsListBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -24,7 +24,7 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
     private val newsAdapter = NewsAdapter(::onNewsItemClicked)
 
     private val viewModel by sharedViewModel<NewsSharedViewModel>()
-    private val binding by viewDataBinding(FragmentNewsListBinding::bind)
+    private val binding by viewBinding(FragmentNewsListBinding::bind)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,7 +53,7 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
         }
     }
 
-    private fun onNewsItemClicked(newsItem: NewsResponse, sharedElement: View) {
+    private fun onNewsItemClicked(newsItem: NewsItemResponse, sharedElement: View) {
         val direction: NavDirections =
             NewsListFragmentDirections.actionNewsListFragmentToNewsDetailsFragment()
         viewModel.chosenNews = newsItem

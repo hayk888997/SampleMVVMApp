@@ -1,11 +1,10 @@
 package com.example.sampleappwithmvvm.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 
 import androidx.lifecycle.viewModelScope
-import com.example.sampleappwithmvvm.network.dto.NewsResponse
-import com.example.sampleappwithmvvm.network.repo.NewsRepository
+import com.example.sampleappwithmvvm.network.dto.NewsItemResponse
+import com.example.sampleappwithmvvm.network.repo.NewsRemoteRepository
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -13,16 +12,15 @@ import org.koin.core.component.KoinComponent
 import retrofit2.HttpException
 
 class NewsSharedViewModel(
-    private val repository: NewsRepository,
+    private val repository: NewsRemoteRepository,
 ) : ViewModel(), KoinComponent {
 
-    var newsList : List<NewsResponse>? = ArrayList()
+    var newsList : List<NewsItemResponse>? = ArrayList()
     val stateFlow = MutableStateFlow<NewsListLoadState>(NewsListLoadState.Default)
 
-    var chosenNews : NewsResponse? = null
+    var chosenNews : NewsItemResponse? = null
 
     private val errorHandler = CoroutineExceptionHandler { _, throwable ->
-        Log.e(this::class.java.simpleName, "", throwable)
         stateFlow.value = NewsListLoadState.Error(throwable as Exception)
     }
 

@@ -3,7 +3,7 @@ package com.example.sampleappwithmvvm.network.dto
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class NewsResponse(
+data class NewsItemResponse(
     @SerializedName("id")
     @Expose
     var id: String? = null,
